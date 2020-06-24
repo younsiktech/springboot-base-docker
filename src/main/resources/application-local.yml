@@ -1,0 +1,22 @@
+app:
+  profile: local
+
+base:
+  ver:
+    api: v1.0
+    web: v1.0
+  service:
+    type:
+      service1: service1
+      service2: service2
+  cache: false
+
+logging:
+  path: /Users/younsik/works/git/springboot-base-docker/logs/springboot/base/local
+  file: base
+  level:
+    kr:
+      com:
+        youunsiktech:
+          springboot:
+            base: debug
