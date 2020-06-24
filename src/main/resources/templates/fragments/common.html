@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head th:fragment="commonFragment">
+
+    <meta charset="UTF-8" />
+
+    <title>Spring Boot</title>
+
+    <!-- 공통으로 쓰이는 css파일을넣는다.-->
+    <!-- <link rel="stylesheet" th:href="@{'/css/library/swiper.min.css' + '?' + ${#this.hashKey}}"> -->
+
+    <!-- 사용자 CSS 영역이 들어감 -->
+    <th:block layout:fragment="css"></th:block>
+
+</head>
+
+</html>
