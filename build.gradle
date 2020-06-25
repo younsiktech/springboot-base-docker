@@ -46,13 +46,13 @@ dependencies {
 
 task warName {
     doLast {
-        println "sphynx-frigg-web.war"
+        println "springboot-base-docker.war"
     }
 }
 
 war {
     enabled = true
-    archiveName = "sphynx-frigg-web.war"
+    archiveName = "springboot-base-docker.war"
 }
 
 ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
