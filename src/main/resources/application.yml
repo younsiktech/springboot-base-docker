@@ -3,12 +3,6 @@ spring:
     active: local
   application:
     name: springboot-base
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchAutoConfiguration
-      - org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
-  #      - org.springframework.boot.autoconfigure.session.SessionAutoConfiguration
-  #      - org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
   resources:
     chain:
       html-application-cache: false
