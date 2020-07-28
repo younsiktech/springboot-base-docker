@@ -3,21 +3,6 @@ spring:
     active: local
   application:
     name: springboot-base
-  resources:
-    chain:
-      html-application-cache: false
-      enabled: true
-      strategy:
-        content:
-          enabled: true
-          paths: /**
-  thymeleaf:
-    cache: false
-  devtools:
-    livereload:
-      enabled: true
-    freemarker:
-      cache: false
 logging:
   config: classpath:base-logback.xml
 management:
@@ -31,7 +16,3 @@ management:
       base-path: /base
       path-mapping:
         health: /health
-server:
-  error:
-    whitelabel:
-      enabled: false

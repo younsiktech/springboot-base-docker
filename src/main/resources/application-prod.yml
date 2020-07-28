@@ -1,22 +1,14 @@
 app:
   profile: prod
-
-base:
-  ver:
-    api: v1.0
-    web: v1.0
-  service:
-    type:
-      service1: service1
-      service2: service2
-  cache: false
-
+spring:
+  profiles.include: db-prod
 logging:
-  path: /home/younsiktech/logs/springboot/base/local
+  path: {LOG_PATH}
   file: base
   level:
-    kr:
-      com:
-        youunsiktech:
-          springboot:
-            base: debug
+    kr.com.younsiktech.springboot.base: debug
+    org.hibernate:
+      SQL: debug
+      type.descriptor.sql.BasicBinder: trace
+    com.zaxxer.hikari: trace
+    com.zaxxer.hikari.HikariConfig: debug
