@@ -1,19 +1,24 @@
 buildscript {
+
+    ext {
+        springBootVersion = '2.3.2.RELEASE'
+    }
+
     repositories {
         mavenCentral()
         jcenter()
     }
+
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
 }
 
-plugins {
-    id 'org.springframework.boot' version '2.2.4.RELEASE'
-    id 'java'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'war'
+apply plugin : 'java'
+apply plugin : 'org.springframework.boot'
+apply plugin : 'io.spring.dependency-management'
 
-}
-
-group 'kr.com.tech.younsik'
+group 'kr.com.younsiktech.springboot'
 
 version '1.0-SNAPSHOT'
 
@@ -31,28 +36,34 @@ repositories {
 }
 
 dependencies {
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    // compile : 모듈 수정 시 해당 모듈을 직접, 간접 의존하고 있는 다른 모듈들을 재빌드한다
+    // implementation : 모듈 수정 시 해당 모듈을 직접 의존하고 있는 모듈들만 재빌드한다
+
+    // implementation 장점
+    // 빠르다. 의존성 있는 라이브러리가 컴파일 패스에 들어가지 않아서 더 빠르다.
+    // 쉬운 배포가 가능하다. 라이브러리가 쓰는 것과 컴파일할때 쓰는 라이브러리가 구분이 된다.
+
     implementation('org.springframework.boot:spring-boot-starter-web')
     implementation('org.springframework.boot:spring-boot-starter-actuator')
-    implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
-    implementation('nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect')
 
-    compileOnly('org.projectlombok:lombok')
+    implementation('org.projectlombok:lombok')
     annotationProcessor('org.projectlombok:lombok')
 
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.9' // validate check
-    compile group: 'commons-io', name: 'commons-io', version: '2.6' // common IO
+    implementation('org.apache.commons:commons-lang3:3.9') //group: '', name: '', version: '' // validate check
+    implementation('commons-io:commons-io:2.6') // common IO
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+
+    // mysql 사용
+    implementation('org.springframework.boot:spring-boot-starter-jdbc')
+    runtime('mysql:mysql-connector-java')
+
+    // jpa 사용
+    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
 }
 
-task warName {
-    doLast {
-        println "sphynx-frigg-web.war"
-    }
-}
-
-war {
-    enabled = true
-    archiveName = "sphynx-frigg-web.war"
+test {
+    useJUnitPlatform()
 }
 
 ext.profile = (!project.hasProperty('profile') || !profile) ? 'local' : profile
